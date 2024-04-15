@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Lista de Posts</title>
+</head>
+<body>
+    <h1>Lista de Posts</h1>
+    {% for post in posts %}
+        <div>
+            <h2>{{ post.title }}</h2>
+            <p>{{ post.content }}</p>
+            <p>Publicado el: {{ post.date_posted }}</p>
+        </div>
+        <hr>
+    {% endfor %}
+</body>
+</html>
