@@ -1,0 +1,22 @@
+{% extends 'blogapp/base.html' %}
+
+<head>
+    <title>Login</title>
+</head>
+
+{% block content %}
+
+<h2>Iniciar sesión</h2>
+{% if error_message %}
+<p style="color: red;">{{ error_message }}</p>
+{% endif %}
+<form method="post">
+    {% csrf_token %}
+    <label for="username">Nombre de usuario:</label><br>
+    <input type="text" id="username" name="username" required><br><br>
+    <label for="password">Contraseña:</label><br>
+    <input type="password" id="password" name="password" required><br><br>
+    <input type="submit" value="Iniciar sesión">
+</form>
+
+{% endblock %}

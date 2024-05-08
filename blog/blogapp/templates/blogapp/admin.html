@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página de administrador</title>
+</head>
+<body>
+    <h2>Página de administrador</h2>
+    <p>Bienvenido, {{ request.user }}.</p>
+    
+    {% if request.user.is_superuser %}
+        <p><a href="{% url 'admin:index' %}">Panel de administración de Django</a></p>
+        <p><a href="{% url 'admin:auth_user_add' %}">Registrar nuevo usuario</a></p>
+    {% endif %}
+    
+    <a href="{% url 'logout' %}">Cerrar sesión</a>
+</body>
+</html>

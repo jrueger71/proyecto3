@@ -1,17 +1,32 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Lista de Posts</title>
-</head>
-<body>
-    <h1>Lista de Posts</h1>
-    {% for post in posts %}
-        <div>
-            <h2>{{ post.title }}</h2>
-            <p>{{ post.content }}</p>
-            <p>Publicado el: {{ post.date_posted }}</p>
+
+{% extends 'blogapp/base.html' %}
+
+{% block content %}
+
+    <div class="container">
+        <h1 class="mt-5 mb-4">Lista de Posts</h1>
+        <br>
+        <!-- Ejemplos de Posts -->
+        {% for post in posts %}
+        <div class="card mb-4">
+            <div>
+                <h2 class="card-title">{{ post.title }}</h2>
+                <p class="card-text">{{ post.content }}</p>
+                <p class="card-text"><small class="text-muted">Publicado el: {{ post.date_posted }}</small></p>
+            </div>
+            <br>
+            <!-- Formulario de comentarios -->
+            <form method="post" action="{% url 'post_detail' post.pk %}">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit" class="btn btn-primary">Enviar Comentario</button>
+            </form>
+            <br>
+            <a href="{% url 'post_detail' post.pk %}">Ver detalles y comentarios</a>
         </div>
-        <hr>
-    {% endfor %}
-</body>
-</html>
+        {% endfor %}
+    </div>
+
+    {% endblock %}
+    
+
